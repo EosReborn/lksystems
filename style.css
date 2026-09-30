@@ -216,3 +216,7 @@ footer a{color:#cfe3f5}
 .card:hover .media{transform:scale(1.04)}
 .card{isolation:isolate}
 @media(hover:none){.card:hover .media{transform:none}}
+
+@media(max-width:640px){
+  .card .media{aspect-ratio:2.2/1;margin-bottom:14px}
+}
