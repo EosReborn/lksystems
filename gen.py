@@ -56,6 +56,7 @@ def page(fname, title, desc, body, hero=None):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/images/slide1.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.className+=" js"</script>
 <link rel="stylesheet" href="style.css">
 <script type="application/ld+json">{jsonld}</script>
 </head>
@@ -64,9 +65,8 @@ def page(fname, title, desc, body, hero=None):
 <header class="nav">
   <div class="wrap nav-in">
     <a href="index.html" class="brand"><img src="images/logo-lk-systems.png" alt="LK-SYSTEMS Informatika" width="205" height="40"></a>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Menü megnyitása">
-    <label for="menu-toggle" class="burger" aria-hidden="true"><span></span></label>
-    <nav class="links" aria-label="Főmenü">
+    <button type="button" class="burger" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="main-menu"><span></span></button>
+    <nav class="links" id="main-menu" aria-label="Főmenü">
       {nav}
       <a href="kapcsolat.html" class="btn btn-sm"{kap}>Kapcsolat</a>
     </nav>

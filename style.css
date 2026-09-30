@@ -21,7 +21,7 @@ a{color:var(--brand)}
 .links{display:flex;align-items:center;gap:clamp(14px,2vw,26px)}
 .links a:not(.btn){color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;padding:6px 0;border-bottom:2px solid transparent}
 .links a:not(.btn):hover,.links a[aria-current=page]:not(.btn){color:var(--brand);border-color:var(--brand)}
-.menu-toggle,.burger{display:none}
+.burger{display:none}
 
 .btn{display:inline-block;background:var(--brand);color:#fff!important;padding:13px 24px;border-radius:999px;text-decoration:none;font-weight:600;text-align:center;transition:.2s;min-height:44px}
 .btn:hover{background:var(--brand-d);transform:translateY(-1px)}
@@ -123,7 +123,7 @@ footer strong{color:#fff}
 footer a{color:#cfe3f5}
 
 /* responsive */
-@media(max-width:1000px){
+@media(max-width:1080px){
   .grid.four{grid-template-columns:1fr 1fr}
   .logos{grid-template-columns:repeat(3,1fr)}
   .hero-in,.split{grid-template-columns:1fr}
@@ -131,18 +131,18 @@ footer a{color:#cfe3f5}
   .foot-in{grid-template-columns:1fr 1fr}
   .foot-in>:first-child{grid-column:1/-1}
   /* mobile menu */
-  .burger{display:block;cursor:pointer;padding:22px 12px}
-  .burger span,.burger span::before,.burger span::after{display:block;width:24px;height:2px;background:var(--ink);position:relative;content:"";transition:.2s}
+  .burger{display:flex;align-items:center;justify-content:center;width:48px;height:48px;margin-right:-10px;background:none;border:0;cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}
+  .burger span,.burger span::before,.burger span::after{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:"";transition:transform .25s,background .2s,top .25s}
   .burger span::before{position:absolute;top:-7px}.burger span::after{position:absolute;top:7px}
-  .menu-toggle:checked ~ .burger span{background:transparent}
-  .menu-toggle:checked ~ .burger span::before{top:0;transform:rotate(45deg)}
-  .menu-toggle:checked ~ .burger span::after{top:0;transform:rotate(-45deg)}
-  .menu-toggle:focus-visible ~ .burger{outline:3px solid #6cc0f5;border-radius:8px}
-  .menu-toggle{display:block;position:absolute;opacity:0;width:44px;height:44px;right:var(--gut);top:12px;margin:0}
-  .links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:8px var(--gut) 20px;gap:0;border-bottom:1px solid var(--line);box-shadow:0 16px 30px rgba(0,0,0,.1);max-height:calc(100vh - var(--nav-h));max-height:calc(100dvh - var(--nav-h));overflow:auto}
+  .burger[aria-expanded=true] span{background:transparent}
+  .burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+  .burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+  .links{position:absolute;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:8px var(--gut) 20px;gap:0;border-bottom:1px solid var(--line);box-shadow:0 16px 30px rgba(0,0,0,.1);max-height:calc(100vh - var(--nav-h));max-height:calc(100dvh - var(--nav-h));overflow:auto}
+  .js .links{display:none}
+  .js .nav.open .links{display:flex;animation:menuIn .25s ease}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
   .links a:not(.btn){padding:14px 0;border-bottom:1px solid var(--line);font-size:17px}
   .links .btn{margin-top:14px;padding:13px;font-size:16px}
-  .menu-toggle:checked ~ .links{display:flex}
 }
 @media(max-width:640px){
   .grid.four,.grid.three{grid-template-columns:1fr}
@@ -202,3 +202,8 @@ footer a{color:#cfe3f5}
 .linklike{background:none;border:0;padding:0;font:inherit;color:#cfe3f5;text-decoration:underline;cursor:pointer}
 .prose{max-width:800px}
 .prose code{background:var(--alt);padding:2px 6px;border-radius:6px;font-size:.9em}
+
+/* ---------- IT animáció (hálózati topológia) ---------- */
+.hero,.page-hero{position:relative;overflow:hidden;isolation:isolate}
+.hero>.wrap,.page-hero>.wrap{position:relative;z-index:1}
+.netfx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
