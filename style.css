@@ -69,7 +69,7 @@ p{margin:0 0 1em}
 .grid{display:grid;gap:20px}
 .grid.four{grid-template-columns:repeat(4,1fr)}
 .grid.three{grid-template-columns:repeat(3,1fr)}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,28px);transition:.2s}
+.card{--pad:clamp(20px,3vw,28px);background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:var(--pad);transition:.2s;overflow:hidden}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(15,60,100,.1);border-color:#c6dcee}
 .card p{margin:0;color:var(--muted);font-size:16px}
 .ico{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#e6f2fb;font-size:24px;margin-bottom:16px}
@@ -211,3 +211,8 @@ footer a{color:#cfe3f5}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .logos .nolink{display:grid;place-items:center;height:100%;padding:14px}
 .logos .nolink img{filter:grayscale(1);opacity:.75}
+
+.card .media{display:block;width:calc(100% + 2 * var(--pad));max-width:none;margin:calc(-1 * var(--pad)) calc(-1 * var(--pad)) 18px;aspect-ratio:3/2;object-fit:cover;background:var(--alt);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .media{transform:scale(1.04)}
+.card{isolation:isolate}
+@media(hover:none){.card:hover .media{transform:none}}

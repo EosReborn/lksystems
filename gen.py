@@ -99,7 +99,7 @@ def page(fname, title, desc, body, hero=None):
     <div>
       <a href="https://www.facebook.com/lksystemsbt" rel="noopener">Facebook</a> ·
       <a href="szechenyi-2020.html">Széchenyi 2020</a><br>
-      <a href="suti.html">Süti tájékoztató</a> · <button type="button" class="linklike" data-cookie-settings>Süti beállítások</button><br>© 2026 LK-SYSTEMS Bt.
+      <a href="suti.html">Süti tájékoztató</a> · <button type="button" class="linklike" data-cookie-settings>Süti beállítások</button><br>Fotók: <a href="https://www.pexels.com" rel="noopener">Pexels</a> · © 2026 LK-SYSTEMS Bt.
     </div>
   </div>
 </footer>
@@ -128,10 +128,10 @@ STATS = '''<ul class="stats" aria-label="Általunk üzemeltetett géppark">
     </ul>'''
 
 CARDS4 = '''<div class="grid four">
-      <article class="card"><span class="ico" aria-hidden="true">⚙️</span><h3>IT üzemeltetés</h3><p>A szolgáltatás megrendelése esetén cégünk átveszi az Ön informatikai rendszerének üzemeltetésével kapcsolatos feladatokat.</p></article>
-      <article class="card"><span class="ico" aria-hidden="true">🛒</span><h3>IT beszerzés</h3><p>Szerződéses partnereink számára biztosítjuk a megfelelő hálózati eszközök, hardverek, szoftverek, valamint irodai kellékanyagok beszerzését.</p></article>
-      <article class="card"><span class="ico" aria-hidden="true">🌐</span><h3>Infrastruktúra</h3><p>A megbízható és hatékony informatikai rendszer alapja a megfelelő hálózati infrastruktúra megléte.</p></article>
-      <article class="card"><span class="ico" aria-hidden="true">🎧</span><h3>Támogatás</h3><p>Munkatársainak és alkalmazottainak minden technikai segítséget megadunk, amire munkájuk során szükségük lehet.</p></article>
+      <article class="card"><img class="media" src="images/stock/uzemeltetes.jpg" alt="Szerverszekrények egy szerverteremben" width="800" height="533" loading="lazy"><h3>IT üzemeltetés</h3><p>A szolgáltatás megrendelése esetén cégünk átveszi az Ön informatikai rendszerének üzemeltetésével kapcsolatos feladatokat.</p></article>
+      <article class="card"><img class="media" src="images/stock/beszerzes.jpg" alt="Számítógép alaplapjának javítása" width="800" height="533" loading="lazy"><h3>IT beszerzés</h3><p>Szerződéses partnereink számára biztosítjuk a megfelelő hálózati eszközök, hardverek, szoftverek, valamint irodai kellékanyagok beszerzését.</p></article>
+      <article class="card"><img class="media" src="images/stock/infrastruktura.jpg" alt="Hálózati patch panel kék kábelekkel" width="800" height="533" loading="lazy"><h3>Infrastruktúra</h3><p>A megbízható és hatékony informatikai rendszer alapja a megfelelő hálózati infrastruktúra megléte.</p></article>
+      <article class="card"><img class="media" src="images/stock/tamogatas.jpg" alt="Munkatársak egy irodai számítógép előtt" width="800" height="533" loading="lazy"><h3>Támogatás</h3><p>Munkatársainak és alkalmazottainak minden technikai segítséget megadunk, amire munkájuk során szükségük lehet.</p></article>
     </div>'''
 
 PARTNERS = '''<section class="section alt"><div class="wrap">
@@ -251,9 +251,9 @@ write("lakossagi.html", page("lakossagi.html",
  f'''<section class="section"><div class="wrap">
     <h2 class="sr-only">Lakossági szolgáltatásaink</h2>
     <div class="grid three">
-      <article class="card"><span class="ico" aria-hidden="true">📶</span><h3>Internet beállítás</h3><p>Segítünk az otthoni vezetékes vagy vezeték nélküli hálózat beállításában, hogy kényelmesen használhassa számítógépét, okostelefonját, tabletjét, TV-jét.</p></article>
-      <article class="card"><span class="ico" aria-hidden="true">🧰</span><h3>Szoftveres karbantartás</h3><p>Lassabbnak tűnik a számítógépe, mint korábban? Nem azt a teljesítményt nyújtja, amit megszokott? Gyorsan és véglegesen orvosoljuk a problémát!</p></article>
-      <article class="card"><span class="ico" aria-hidden="true">🖥️</span><h3>Alkatrészek, perifériák</h3><p>Bővítené számítógépét? Tönkrement egy alkatrész? Egyszerűen csak szüksége van egy új monitorra vagy nyomtatóra? Megtaláljuk a legjobb megoldást!</p></article>
+      <article class="card"><img class="media" src="images/stock/internet.jpg" alt="Wifi router" width="800" height="533" loading="lazy"><h3>Internet beállítás</h3><p>Segítünk az otthoni vezetékes vagy vezeték nélküli hálózat beállításában, hogy kényelmesen használhassa számítógépét, okostelefonját, tabletjét, TV-jét.</p></article>
+      <article class="card"><img class="media" src="images/stock/szoftver.jpg" alt="Programkód a képernyőn" width="800" height="533" loading="lazy"><h3>Szoftveres karbantartás</h3><p>Lassabbnak tűnik a számítógépe, mint korábban? Nem azt a teljesítményt nyújtja, amit megszokott? Gyorsan és véglegesen orvosoljuk a problémát!</p></article>
+      <article class="card"><img class="media" src="images/stock/periferia.jpg" alt="Monitor, billentyűzet és egér az asztalon" width="800" height="533" loading="lazy"><h3>Alkatrészek, perifériák</h3><p>Bővítené számítógépét? Tönkrement egy alkatrész? Egyszerűen csak szüksége van egy új monitorra vagy nyomtatóra? Megtaláljuk a legjobb megoldást!</p></article>
     </div>
 </div></section>
 {CTA}''',
