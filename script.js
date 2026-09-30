@@ -63,7 +63,7 @@
   }
   if (burger) {
     burger.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); burger.focus(); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); burger.focus(); } });
     document.addEventListener('click', function (e) { if (!e.target.closest('.nav')) setMenu(false); });
     nav.querySelectorAll('.links a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     window.matchMedia('(min-width: 1081px)').addEventListener('change', function () { setMenu(false); });
@@ -82,7 +82,7 @@
     cv.className = 'netfx'; cv.setAttribute('aria-hidden', 'true');
     host.insertBefore(cv, host.firstChild);
     var ctx = cv.getContext('2d');
-    var W, H, dpr, nodes = [], packets = [], running = false, raf = 0, LINK;
+    var W, H, dpr, nodes = [], packets = [], running = false, raf = 0, LINK, inView = true;
 
     function size() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -148,15 +148,15 @@
     }
 
     function loop() { if (!running) return; frame(true); raf = requestAnimationFrame(loop); }
-    function start() { if (reduce || running) return; running = true; loop(); }
+    function start() { if (reduce || running || !inView) return; running = true; loop(); }
     function stop() { running = false; cancelAnimationFrame(raf); }
 
     size(); frame(false);
     var rt; window.addEventListener('resize', function () {
-      clearTimeout(rt); rt = setTimeout(function () { size(); frame(false); }, 150);
+      clearTimeout(rt); rt = setTimeout(function () { if (host.clientWidth === W && Math.abs(host.clientHeight - H) < 120) return; size(); frame(false); }, 150);
     });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { en[0].isIntersecting ? start() : stop(); }).observe(host);
+      new IntersectionObserver(function (en) { inView = en[0].isIntersecting; inView ? start() : stop(); }).observe(host);
     } else start();
     document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
   });

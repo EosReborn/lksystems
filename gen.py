@@ -8,10 +8,13 @@ NAV = [("index.html","Kezdőlap"),("szolgaltatasok.html","Szolgáltatások"),("r
        ("lakossagi.html","Lakossági"),("szechenyi-2020.html","Széchenyi 2020")]
 
 SITE = "https://lk-systems.hu"
+# A közösségi megosztáshoz (og:image) élő, elérhető URL kell. Amíg az oldal a Vercelen fut, ide mutat;
+# a lk-systems.hu-ra költözés után állítsd SITE-ra.
+OG_HOST = "https://lksystems.vercel.app"
 import json
 BUSINESS = {
  "@type":"ProfessionalService","@id":SITE+"/#business","name":"LK-SYSTEMS Informatikai, Kereskedelmi és Szolgáltató Bt.",
- "alternateName":"LK-SYSTEMS Bt.","url":SITE+"/","logo":SITE+"/images/logo-lk-systems.png","image":SITE+"/images/slide1.jpg",
+ "alternateName":"LK-SYSTEMS Bt.","url":SITE+"/","logo":SITE+"/images/logo-lk-systems.png","image":SITE+"/images/og-image.jpg",
  "telephone":"+36704167246","email":"info@lk-systems.hu","foundingDate":"2013",
  "description":"Informatikai rendszerek üzemeltetése, rendszergazda szolgáltatás, hálózatépítés és IT eszközbeszerzés kis- és középvállalkozásoknak Mosonmagyaróváron.",
  "address":{"@type":"PostalAddress","streetAddress":"Palánk utca 1.","postalCode":"9200","addressLocality":"Mosonmagyaróvár","addressCountry":"HU"},
@@ -24,10 +27,12 @@ CRUMBS = {"szolgaltatasok.html":"Szolgáltatások","rolunk.html":"Rólunk","lako
 def page(fname, title, desc, body, hero=None):
     url = SITE + "/" + ("" if fname=="index.html" else fname)
     graph = [BUSINESS, {"@type":"WebSite","@id":SITE+"/#website","url":SITE+"/","name":"LK-SYSTEMS Bt.","inLanguage":"hu","publisher":{"@id":SITE+"/#business"}}]
-    if fname!="index.html":
+    if fname not in ("index.html","404.html"):
         graph.append({"@type":"BreadcrumbList","itemListElement":[
           {"@type":"ListItem","position":1,"name":"Kezdőlap","item":SITE+"/"},
           {"@type":"ListItem","position":2,"name":CRUMBS[fname],"item":url}]})
+    extra_head = '\n<link rel="preload" as="image" href="images/slide1.jpg" fetchpriority="high">' if fname=="index.html" else ""
+    robots = "noindex, follow" if fname=="404.html" else "index, follow, max-image-preview:large"
     jsonld = json.dumps({"@context":"https://schema.org","@graph":graph}, ensure_ascii=False)
     cur = ' aria-current="page"'
     nav = "".join(f'<a href="{h}"{cur if h==fname else ""}>{t}</a>' for h,t in NAV)
@@ -45,16 +50,22 @@ def page(fname, title, desc, body, hero=None):
 <meta name="theme-color" content="#0b2236">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{robots}">
 <link rel="canonical" href="{url}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">{extra_head}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:site_name" content="LK-SYSTEMS Bt.">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}/images/slide1.jpg">
+<meta property="og:image" content="{OG_HOST}/images/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LK-SYSTEMS Informatika – Saját rendszergazda, nem csak a nagyok kiváltsága">
+<meta name="twitter:image" content="{OG_HOST}/images/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.className+=" js"</script>
 <link rel="stylesheet" href="style.css">
@@ -126,12 +137,12 @@ CARDS4 = '''<div class="grid four">
 PARTNERS = '''<section class="section alt"><div class="wrap">
     <p class="eyebrow">Partnereink</p><h2>Akik bíznak bennünk</h2>
     <ul class="logos">
-      <li><a href="http://ambroziaetterem.hu" rel="noopener" aria-label="Ambrózia Étterem"><img src="images/partners/ambrozia.jpg" alt="Ambrózia Étterem" loading="lazy"></a></li>
-      <li><a href="http://www.legjobbalkusz.hu" rel="noopener" aria-label="Global Alkusz"><img src="images/partners/globalalkusz.png" alt="Global Alkusz" loading="lazy"></a></li>
-      <li><a href="http://movar-print.hu" rel="noopener" aria-label="Movar Print"><img src="images/partners/movar_print_logo.png" alt="Movar Print" loading="lazy"></a></li>
-      <li><a href="http://mptt.hu" rel="noopener" aria-label="MPTT"><img src="images/partners/mptt_logo.png" alt="MPTT" loading="lazy"></a></li>
-      <li><a href="http://www.notefix.hu" rel="noopener" aria-label="Notefix"><img src="images/partners/notefix.png" alt="Notefix" loading="lazy"></a></li>
-      <li><a href="http://preinerbau.hu" rel="noopener" aria-label="Preiner Bau"><img src="images/partners/preinerlogo.png" alt="Preiner Bau" loading="lazy"></a></li>
+      <li><a href="https://ambroziaetterem.hu" rel="noopener" aria-label="Ambrózia Étterem"><img src="images/partners/ambrozia.jpg" alt="Ambrózia Étterem" width="65" height="60" loading="lazy"></a></li>
+      <li><a href="http://www.legjobbalkusz.hu" rel="noopener" aria-label="Global Alkusz"><img src="images/partners/globalalkusz.png" alt="Global Alkusz" width="275" height="60" loading="lazy"></a></li>
+      <li><a href="https://movarprint.hu/" rel="noopener" aria-label="Movar Print"><img src="images/partners/movar_print_logo.png" alt="Movar Print" width="271" height="60" loading="lazy"></a></li>
+      <li><a href="https://mptt.hu/" rel="noopener" aria-label="MPTT"><img src="images/partners/mptt_logo.png" alt="MPTT" width="146" height="60" loading="lazy"></a></li>
+      <li><span class="nolink"><img src="images/partners/notefix.png" alt="Notefix" width="177" height="60" loading="lazy"></span></li>
+      <li><a href="http://preinerbau.hu" rel="noopener" aria-label="Preiner Bau"><img src="images/partners/preinerlogo.png" alt="Preiner Bau" width="61" height="60" loading="lazy"></a></li>
     </ul></div></section>'''
 
 # ---------- index
@@ -173,6 +184,7 @@ write("szolgaltatasok.html", page("szolgaltatasok.html",
  "Szolgáltatások – LK-SYSTEMS Bt. Mosonmagyaróvár",
  "Átalánydíjas rendszerfelügyelet, felhasználó támogatás, adatmentés, hálózatépítés, hardver- és szoftverértékesítés Mosonmagyaróváron.",
  f'''<section class="section"><div class="wrap">
+    <h2 class="sr-only">Szolgáltatásaink</h2>
     {CARDS4}
     <div class="split">
       <div>
@@ -234,9 +246,10 @@ write("rolunk.html", page("rolunk.html",
 
 # ---------- lakossagi
 write("lakossagi.html", page("lakossagi.html",
- "Lakossági informatikai szolgáltatások – LK-SYSTEMS Bt. Mosonmagyaróvár",
+ "Lakossági informatika – LK-SYSTEMS Bt. Mosonmagyaróvár",
  "Otthoni internet beállítás, számítógép szoftveres karbantartás, alkatrészek és perifériák Mosonmagyaróváron.",
  f'''<section class="section"><div class="wrap">
+    <h2 class="sr-only">Lakossági szolgáltatásaink</h2>
     <div class="grid three">
       <article class="card"><span class="ico" aria-hidden="true">📶</span><h3>Internet beállítás</h3><p>Segítünk az otthoni vezetékes vagy vezeték nélküli hálózat beállításában, hogy kényelmesen használhassa számítógépét, okostelefonját, tabletjét, TV-jét.</p></article>
       <article class="card"><span class="ico" aria-hidden="true">🧰</span><h3>Szoftveres karbantartás</h3><p>Lassabbnak tűnik a számítógépe, mint korábban? Nem azt a teljesítményt nyújtja, amit megszokott? Gyorsan és véglegesen orvosoljuk a problémát!</p></article>
@@ -248,7 +261,7 @@ write("lakossagi.html", page("lakossagi.html",
 
 # ---------- szechenyi
 write("szechenyi-2020.html", page("szechenyi-2020.html",
- "Széchenyi 2020 – GINOP-5.2.4-16 gyakornoki program – LK-SYSTEMS Bt.",
+ "Széchenyi 2020 – GINOP-5.2.4-16 program – LK-SYSTEMS Bt.",
  "GINOP-5.2.4-16 Gyakornoki program pályakezdők támogatására – a program megvalósulása az LK-SYSTEMS Bt.-nél.",
  '''<section class="section"><div class="wrap split">
     <div>
@@ -267,13 +280,14 @@ write("szechenyi-2020.html", page("szechenyi-2020.html",
     </div>
     <figure class="sz"><img src="images/szechenyi-2020.jpg" alt="Magyarország Kormánya, Európai Unió – Európai Szociális Alap, Befektetés a jövőbe, Széchenyi 2020" width="434" height="300"></figure>
 </div></section>''',
- ("Széchenyi 2020","GINOP-5.2.4-16 Gyakornoki program pályakezdők támogatására",None)))
+ ("Széchenyi 2020","GINOP&#8209;5.2.4&#8209;16 Gyakornoki program pályakezdők támogatására",None)))
 
 # ---------- kapcsolat
 write("kapcsolat.html", page("kapcsolat.html",
  "Kapcsolat – LK-SYSTEMS Bt. Mosonmagyaróvár",
  "LK-SYSTEMS Bt., 9200 Mosonmagyaróvár, Palánk utca 1. Telefon: +36 70 416 7246, e-mail: info@lk-systems.hu",
  '''<section class="section"><div class="wrap">
+    <h2 class="sr-only">Elérhetőségeink</h2>
     <div class="grid three contact">
       <a class="card link" href="tel:+36704167246"><span class="ico" aria-hidden="true">📞</span><h3>Telefon</h3><p>+36 70 416 7246</p></a>
       <a class="card link" href="mailto:info@lk-systems.hu"><span class="ico" aria-hidden="true">✉️</span><h3>E-mail</h3><p>info@lk-systems.hu</p></a>
@@ -309,6 +323,15 @@ write("suti.html", page("suti.html",
     <p>LK-SYSTEMS Informatikai, Kereskedelmi és Szolgáltató Bt., 9200 Mosonmagyaróvár, Palánk utca 1., <a href="mailto:info@lk-systems.hu">info@lk-systems.hu</a>.</p>
   </div></section>''',
  ("Jogi tájékoztató","Süti tájékoztató",None)))
+
+write("404.html", page("404.html",
+ "Az oldal nem található – LK-SYSTEMS Bt.",
+ "A keresett oldal nem található. Térjen vissza a kezdőlapra, vagy vegye fel velünk a kapcsolatot.",
+ '''<section class="section"><div class="wrap prose">
+    <p>Az oldal, amit keres, nem létezik vagy áthelyeztük. Az alábbi linkeken találhat tovább:</p>
+    <p class="cta"><a href="index.html" class="btn">Vissza a kezdőlapra</a><a href="kapcsolat.html" class="btn btn-ghost">Kapcsolat</a></p>
+  </div></section>''',
+ ("404-es hiba","Az oldal nem található",None)))
 
 # sitemap + robots
 import datetime
