@@ -101,15 +101,14 @@ def page(fname, title, desc, body, hero=None):
     <div>
       <a href="https://www.facebook.com/lksystemsbt" rel="noopener">Facebook</a> ·
       <a href="szechenyi-2020.html">Széchenyi 2020</a><br>
-      <a href="suti.html">Süti tájékoztató</a> · <button type="button" class="linklike" data-cookie-settings>Süti beállítások</button><br>© 2026 LK-SYSTEMS Bt.
+      <a href="suti.html">Süti tájékoztató</a><br>© 2026 LK-SYSTEMS Bt.
     </div>
   </div>
 </footer>
-<div class="cookie" id="cookie" role="dialog" aria-modal="false" aria-labelledby="cookie-t" hidden>
+<div class="cookie" id="cookie" role="region" aria-label="Süti tájékoztatás" hidden>
   <div class="cookie-in">
-    <div><strong id="cookie-t">Sütiket használunk</strong>
-    <p>Az oldal működéséhez szükséges sütiket mindig használjuk. Hozzájárulásával statisztikai sütiket is engedélyezhet, amelyek segítenek az oldal fejlesztésében. Részletek: <a href="suti.html">Süti tájékoztató</a>.</p></div>
-    <div class="cookie-btns"><button type="button" class="btn" data-cookie="all">Elfogadom</button><button type="button" class="btn btn-ghost" data-cookie="necessary">Csak a szükségesek</button></div>
+    <p>Ez az oldal <strong>nem használ követő- vagy marketingsütiket</strong>. Csak azt tároljuk a böngészőjében, hogy ezt a tájékoztatót már elolvasta. <a href="suti.html">Részletek</a></p>
+    <button type="button" class="btn btn-sm" data-cookie="necessary">Rendben</button>
   </div>
 </div>
 <script src="script.js" defer></script>
@@ -309,18 +308,19 @@ write("kapcsolat.html", page("kapcsolat.html",
 
 write("suti.html", page("suti.html",
  "Süti tájékoztató – LK-SYSTEMS Bt.",
- "Tájékoztató arról, hogy a lk-systems.hu milyen sütiket használ, és hogyan módosíthatja a hozzájárulását.",
+ "Tájékoztató arról, hogy a lk-systems.hu milyen technikai adatokat tárol a látogató böngészőjében.",
  '''<section class="section"><div class="wrap prose">
-    <h2 class="h2s">Mik azok a sütik?</h2>
-    <p>A sütik (cookie-k) kis szöveges fájlok, amelyeket a weboldal az Ön böngészőjében tárol. Segítségükkel az oldal megjegyzi a beállításait, illetve ismeri fel a visszatérő látogatót.</p>
-    <h2 class="h2s">Milyen sütiket használunk?</h2>
+    <h2 class="h2s">Röviden</h2>
+    <p>A weboldalunk <strong>nem használ követő-, statisztikai vagy marketingsütiket</strong>, és nem küld adatot külső elemző vagy hirdetési szolgáltatásnak. Nem kér hozzájárulást, mert nincs mihez.</p>
+    <h2 class="h2s">Mit tárolunk a böngészőjében?</h2>
     <dl class="facts">
-      <div><dt>Szükséges</dt><dd>Az oldal alapműködéséhez, és a süti-hozzájárulás megjegyzéséhez kell (böngészőtárhely: <code>lk_cookie_consent</code>, 12 hónapig). Nem kér hozzájárulást.</dd></div>
-      <div><dt>Statisztikai</dt><dd>Csak az Ön hozzájárulásával kapcsolható be. Jelenleg nem használunk ilyen szolgáltatást; ha bevezetjük, ez a tájékoztató frissül.</dd></div>
+      <div><dt>lk_cookie_consent</dt><dd>A böngésző helyi tárhelyében (localStorage) tárolt technikai adat, amely azt jegyzi meg, hogy Ön már elolvasta ezt a tájékoztatást, hogy a figyelmeztetés ne jelenjen meg újra. Nem tartalmaz személyes adatot, nem küldjük el sehová. 12 hónapig érvényes.</dd></div>
     </dl>
-    <h2 class="h2s">Hozzájárulás módosítása</h2>
-    <p>A választását bármikor módosíthatja: <button type="button" class="btn btn-sm" data-cookie-settings>Süti beállítások megnyitása</button></p>
-    <p>A sütiket a böngészője beállításaiban is törölheti vagy letilthatja.</p>
+    <h2 class="h2s">Külső oldalak</h2>
+    <p>Az oldalon található hivatkozások (például Facebook, partnereink weboldalai, Google Térkép) más szolgáltatók oldalaira visznek, amelyek saját sütiket használhatnak. Ezekre az oldalakra való átlépéskor az ő adatkezelési tájékoztatójuk érvényes.</p>
+    <h2 class="h2s">Ha ez változik</h2>
+    <p>Ha később olyan szolgáltatást építünk be (például látogatottság-mérést vagy beágyazott térképet), amely sütiket használ, előbb az Ön hozzájárulását kérjük, és frissítjük ezt a tájékoztatót.</p>
+    <p>A böngészőben tárolt adatokat Ön bármikor törölheti a böngészője beállításaiban.</p>
     <h2 class="h2s">Az adatkezelő</h2>
     <p>LK-SYSTEMS Informatikai, Kereskedelmi és Szolgáltató Bt., 9200 Mosonmagyaróvár, Palánk utca 1., <a href="mailto:info@lk-systems.hu">info@lk-systems.hu</a>.</p>
   </div></section>''',
