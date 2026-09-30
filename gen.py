@@ -1,5 +1,5 @@
 # Statikus oldalgenerátor: futtatás -> python3 gen.py
-# Minden .html fájlt, a sitemap.xml-t, a robots.txt-t és a favicon.svg-t újragenerálja.
+# Minden .html fájlt, a sitemap.xml-t, a robots.txt-t újragenerálja.
 
 import os
 OUT = os.path.dirname(os.path.abspath(__file__))  # az oldalak a szkript mellé generálódnak
@@ -52,7 +52,9 @@ def page(fname, title, desc, body, hero=None):
 <meta name="description" content="{desc}">
 <meta name="robots" content="{robots}">
 <link rel="canonical" href="{url}">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">{extra_head}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
@@ -341,5 +343,4 @@ prio = {"index.html":"1.0","szolgaltatasok.html":"0.9","kapcsolat.html":"0.8","r
 urls = "".join(f"  <url><loc>{SITE}/{'' if p=='index.html' else p}</loc><lastmod>{today}</lastmod><priority>{prio[p]}</priority></url>\n" for p in pages)
 write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
-write("favicon.svg", '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1574b4"/><path d="M18 14v30h20v-7H26V14z" fill="#fff"/><path d="M34 24l12 20h-9l-8-13z" fill="#6cc0f5"/></svg>''')
 print("ok")
